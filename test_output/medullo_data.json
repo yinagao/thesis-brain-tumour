@@ -1,0 +1,426 @@
+{
+    "Patient_Pat_MB41": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB41\\401 AX FLAIR 7000-2300.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB41\\Segmentation_11.seg.nrrd"
+    },
+    "Patient_28": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_28\\3 AX FLAIR_3.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_28\\Segmentation_5.seg.nrrd"
+    },
+    "Patient_Pat_MB19": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB19\\3 AX FLAIR_3.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB19\\Segmentation_4.seg.nrrd"
+    },
+    "Patient_47": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_47\\501 AX FLAIR 7000-2300_1.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_47\\Segmentation_15.seg.nrrd"
+    },
+    "Patient_Pat_MB59": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB59\\601 AX FLAIR 7000-2300_1.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB59\\Segmentation_18.seg.nrrd"
+    },
+    "Patient_Pat_MB70": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB70\\501 AX FLAIR 7000-2300.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB70\\Segmentation_2.seg.nrrd"
+    },
+    "Patient_Pat_MB76": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB76\\601 AX FLAIR 7000-2300.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB76\\Segmentation_1.seg.nrrd"
+    },
+    "Patient_Pat_MB10": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB10\\4 AX FLAIR_1.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB10\\Segmentation_4.seg.nrrd"
+    },
+    "Patient_103": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_103\\601 AX FLAIR_2.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_103\\Segmentation_34.seg.nrrd"
+    },
+    "Patient_Pat_MB18": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB18\\3 AX FLAIR_2.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB18\\Segmentation_3.seg.nrrd"
+    },
+    "Patient_Pat_MB67": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB67\\401 AX FLAIR.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB67\\Segmentation_1.seg.nrrd"
+    },
+    "Patient_Pat_MB32": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB32\\4 AX FLAIR_1.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB32\\Segmentation_7.seg.nrrd"
+    },
+    "Patient_Pat_MB107": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB107\\6 Ax T2 Flair.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB107\\Segmentation_20.seg.nrrd"
+    },
+    "Patient_69": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_69\\401 AX FLAIR 7000-2300_3.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_69\\Segmentation_24.seg.nrrd"
+    },
+    "Patient_Pat_MB3": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB3\\3 AX FLAIR.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB3\\Segmentation_1.seg.nrrd"
+    },
+    "Patient_Pat_MB51": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB51\\4 Ax Flair.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB51\\Segmentation_15.seg.nrrd"
+    },
+    "Patient_86": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_86\\701 AX FLAIR 7000-2300_1.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_86\\Segmentation_27.seg.nrrd"
+    },
+    "Patient_Pat_MB30": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB30\\5 AX FLAIR.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB30\\Segmentation_5.seg.nrrd"
+    },
+    "Patient_Pat_MB112": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB112\\601 AX FLAIR 7000-2300_4.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB112\\Segmentation_23.seg.nrrd"
+    },
+    "Patient_Pat_MB113": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB113\\601 AX FLAIR 7000-2300_5.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB113\\Segmentation_24.seg.nrrd"
+    },
+    "Patient_50": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_50\\501 AX FLAIR.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_50\\Segmentation_17.seg.nrrd"
+    },
+    "Patient_Pat_MB79": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB79\\501 AX FLAIR 7000-2300.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB79\\Segmentation_4.seg.nrrd"
+    },
+    "Patient_34": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_34\\4 AX FLAIR_2.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_34\\Segmentation_7.seg.nrrd"
+    },
+    "Patient_72": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_72\\1101 AX FLAIR 7000-2300.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_72\\Segmentation_25.seg.nrrd"
+    },
+    "Patient_Pat_MB85": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB85\\501 AX FLAIR.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB85\\Segmentation_8.seg.nrrd"
+    },
+    "Patient_43": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_43\\701 AX FLAIR 7000-2300.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_43\\Segmentation_12.seg.nrrd"
+    },
+    "Patient_Pat_MB63": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB63\\401 AX FLAIR 7000-2300_3.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB63\\Segmentation_22.seg.nrrd"
+    },
+    "Patient_Pat_MB49": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB49\\601 AX FLAIR 7000-2300.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB49\\Segmentation_14.seg.nrrd"
+    },
+    "Patient_Pat_MB16": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB16\\3 AX FLAIR.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB16\\Segmentation_1.seg.nrrd"
+    },
+    "Patient_Pat_MB75": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB75\\5 Ax T2 Flair.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB75\\Segmentation.seg.nrrd"
+    },
+    "Patient_4": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_4\\5 AX FLAIR.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_4\\Segmentation.seg.nrrd"
+    },
+    "Patient_45": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_45\\401 AX FLAIR 7000-2300.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_45\\Segmentation_13.seg.nrrd"
+    },
+    "Patient_Pat_MB110": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB110\\601 AX FLAIR 7000-2300_3.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB110\\Segmentation_22.seg.nrrd"
+    },
+    "Patient_26": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_26\\3 AX FLAIR_2.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_26\\Segmentation_4.seg.nrrd"
+    },
+    "Patient_74": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_74\\601 AX FLAIR 7000-2300_1.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_74\\Segmentation_26.seg.nrrd"
+    },
+    "Patient_Pat_MB2": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB2\\4 AX FLAIR.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB2\\Segmentation.seg.nrrd"
+    },
+    "Patient_53_": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_53_\\5 AX T2 FLAIR.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_53_\\Segmentation_18.seg.nrrd"
+    },
+    "Patient_39": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_39\\501 AX FLAIR 7000-2300.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_39\\Segmentation_10.seg.nrrd"
+    },
+    "Patient_Pat_MB81": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB81\\801 AX FLAIR 7000-2300_1.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB81\\Segmentation_6.seg.nrrd"
+    },
+    "Patient_Pat_MB64": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB64\\501 AX FLAIR 7000-2300_1.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB64\\Segmentation_23.seg.nrrd"
+    },
+    "Patient_Pat_MB66": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB66\\601 AX FLAIR.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB66\\Segmentation.seg.nrrd"
+    },
+    "Patient_5": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_5\\4 AX FLAIR.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_5\\Segmentation_1.seg.nrrd"
+    },
+    "Patient_Pat_MB89": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB89\\601 AX FLAIR 7000-2300_1.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB89\\Segmentation_9.seg.nrrd"
+    },
+    "Patient_Pat_MB62": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB62\\4 Axial T2 Flair.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB62\\Segmentation_21.seg.nrrd"
+    },
+    "Patient_Pat_MB42": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB42\\401 AX FLAIR 7000-2300_1.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB42\\Segmentation_12.seg.nrrd"
+    },
+    "Patient_Pat_MB31": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB31\\7 COR FLAIR.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB31\\Segmentation_6.seg.nrrd"
+    },
+    "Patient_Pat_MB15": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB15\\4 AX FLAIR.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB15\\Segmentation.seg.nrrd"
+    },
+    "Patient_Pat_MB77": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB77\\801 AX FLAIR 7000-2300.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB77\\Segmentation_2.seg.nrrd"
+    },
+    "Patient_Pat_MB25": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB25\\3 AX FLAIR.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB25\\Segmentation_3.seg.nrrd"
+    },
+    "Patient_Pat_MB71": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB71\\601 AX FLAIR 7000-2300.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB71\\Segmentation.seg.nrrd"
+    },
+    "Patient_54": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_54\\301 AX FLAIR 7000-2300.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_54\\Segmentation_19.seg.nrrd"
+    },
+    "Patient_Pat_MB65": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB65\\4 AX FLAIR FS.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB65\\Segmentation_24.seg.nrrd"
+    },
+    "Patient_Pat_MB17": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB17\\3 AX FLAIR_1.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB17\\Segmentation_2.seg.nrrd"
+    },
+    "Patient_Pat_MB38": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB38\\501 AX FLAIR 7000-2300.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB38\\Segmentation_10.seg.nrrd"
+    },
+    "Patient_114": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_114\\401 AX FLAIR.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_114\\Segmentation_37.seg.nrrd"
+    },
+    "Patient_56": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_56\\501 AX FLAIR 7000-2300_2.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_56\\Segmentation_20.seg.nrrd"
+    },
+    "Patient_Pat_MB55": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB55\\701 AX FLAIR 7000-2300.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB55\\Segmentation_17.seg.nrrd"
+    },
+    "Patient_Pat_MB20": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB20\\3 AX FLAIR_4.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB20\\Segmentation_5.seg.nrrd"
+    },
+    "Patient_Pat_MB105": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB105\\401 AX FLAIR 7000-2300_1.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB105\\Segmentation_18.seg.nrrd"
+    },
+    "Patient_Pat_MB102": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB102\\501 AX FLAIR 7000-2300_5.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB102\\Segmentation_17.seg.nrrd"
+    },
+    "Patient_Pat_MB13": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB13\\5 AX FLAIR.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB13\\Segmentation_7.seg.nrrd"
+    },
+    "Patient_Pat_MB91": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB91\\501 AX FLAIR 7000-2300_2.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB91\\Segmentation_11.seg.nrrd"
+    },
+    "Patient_Pat_MB60": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB60\\301 AX FLAIR.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB60\\Segmentation_19.seg.nrrd"
+    },
+    "Patient_Pat_MB90": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB90\\401 AX FLAIR.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB90\\Segmentation_10.seg.nrrd"
+    },
+    "Patient_Pat_MB6": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB6\\3 AX FLAIR_1.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB6\\Segmentation_2.seg.nrrd"
+    },
+    "Patient_94": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_94\\501 AX FLAIR 7000-2300_4.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_94\\Segmentation_31.seg.nrrd"
+    },
+    "Patient_Pat_MB82": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB82\\401 AX FLAIR 7000-2300.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB82\\Segmentation_7.seg.nrrd"
+    },
+    "Patient_48": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_48\\601 AX FLAIR.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_48\\Segmentation_16.seg.nrrd"
+    },
+    "Patient_Pat_MB14": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB14\\5 AX FLAIR_1.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB14\\Segmentation_8.seg.nrrd"
+    },
+    "Patient_Pat_MB95": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB95\\501 AX FLAIR 7000-2300_3.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB95\\Segmentation_13.seg.nrrd"
+    },
+    "Patient_111": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_111\\901 AX FLAIR GAD.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_111\\Segmentation_36.seg.nrrd"
+    },
+    "Patient_92": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_92\\6 AX T2 FLAIR.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_92\\Segmentation_30.seg.nrrd"
+    },
+    "Patient_9": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_9\\3 AX FLAIR_1.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_9\\Segmentation_3.seg.nrrd"
+    },
+    "Patient_Pat_MB36": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB36\\5 AX FLAIR_1.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB36\\Segmentation_9.seg.nrrd"
+    },
+    "Patient_Pat_MB61": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB61\\6 AX T2 FLAIR.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB61\\Segmentation_20.seg.nrrd"
+    },
+    "Patient_Pat_MB73": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB73\\601 AX FLAIR 7000-2300_2.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB73\\Segmentation_1.seg.nrrd"
+    },
+    "Patient_Pat_MB22": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB22\\3 AXIAL FLAIR.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB22\\Segmentation.seg.nrrd"
+    },
+    "Patient_Pat_MB106": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB106\\5 Ax Flair.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB106\\Segmentation_19.seg.nrrd"
+    },
+    "Patient_Pat_MB23": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB23\\4 AX FLAIR.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB23\\Segmentation_1.seg.nrrd"
+    },
+    "Patient_87": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_87\\601 AX FLAIR 7000-2300_2.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_87\\Segmentation_28.seg.nrrd"
+    },
+    "Patient_Pat_MB109": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB109\\501 AX FLAIR 7000-2300_6.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB109\\Segmentation_21.seg.nrrd"
+    },
+    "Patient_98": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_98\\501 AX FLAIR 7000-2300_5.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_98\\Segmentation_32.seg.nrrd"
+    },
+    "Patient_Pat_MB1": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB1\\4 AX FLAIR.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB1\\Segmentation.seg.nrrd"
+    },
+    "Patient_Pat_MB99": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB99\\601 AX FLAIR 7000-2300_2.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB99\\Segmentation_16.seg.nrrd"
+    },
+    "Patient_Pat_MB8": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB8\\3 AX FLAIR_2.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB8\\Segmentation_3.seg.nrrd"
+    },
+    "Patient_46": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_46\\401 AX FLAIR 7000-2300_1.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_46\\Segmentation_14.seg.nrrd"
+    },
+    "Patient_Pat_MB97": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB97\\501 AX FLAIR 7000-2300_4.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB97\\Segmentation_15.seg.nrrd"
+    },
+    "Patient_Pat_MB12": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB12\\3 AX FLAIR_4.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB12\\Segmentation_6.seg.nrrd"
+    },
+    "Patient_Pat_MB78": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB78\\701 AX FLAIR 7000-2300.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB78\\Segmentation_3.seg.nrrd"
+    },
+    "Patient_Pat_MB44": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB44\\401 AX FLAIR 7000-2300_2.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB44\\Segmentation_13.seg.nrrd"
+    },
+    "Patient_68": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_68\\401 AX FLAIR 7000-2300_2.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_68\\Segmentation_23.seg.nrrd"
+    },
+    "Patient_29": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_29\\4 AX FLAIR_1.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_29\\Segmentation_6.seg.nrrd"
+    },
+    "Patient_37": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_37\\601 AX FLAIR 7000-2300.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_37\\Segmentation_9.seg.nrrd"
+    },
+    "Patient_Pat_MB27": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB27\\3 AX FLAIR_1.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB27\\Segmentation_4.seg.nrrd"
+    },
+    "Patient_Pat_MB33": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB33\\3 AX FLAIR_2.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB33\\Segmentation_8.seg.nrrd"
+    },
+    "Patient_35": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_35\\7 Ax T2 FLAIR.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_35\\Segmentation_8.seg.nrrd"
+    },
+    "Patient_Pat_MB11": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB11\\3 AX FLAIR_3.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB11\\Segmentation_5.seg.nrrd"
+    },
+    "Patient_108": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_108\\401 AX FLAIR 7000-2300_5.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_108\\Segmentation_35.seg.nrrd"
+    },
+    "Patient_88": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_88\\401 AX FLAIR 7000-2300_4.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_88\\Segmentation_29.seg.nrrd"
+    },
+    "Patient_Pat_MB93": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB93\\501 AX FLAIR_1.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB93\\Segmentation_12.seg.nrrd"
+    },
+    "Patient_7": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_7\\3 AX FLAIR.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_7\\Segmentation_2.seg.nrrd"
+    },
+    "Patient_40": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_40\\901 AX FLAIR 7000-2300.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_40\\Segmentation_11.seg.nrrd"
+    },
+    "Patient_Pat_MB52": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB52\\5 Ax Flair.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB52\\Segmentation_16.seg.nrrd"
+    },
+    "Patient_100": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_100\\601 AX FLAIR_1.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_100\\Segmentation_33.seg.nrrd"
+    },
+    "Patient_57": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_57\\501 AX FLAIR 7000-2300_3.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_57\\Segmentation_21.seg.nrrd"
+    },
+    "Patient_Pat_MB80": {
+        "flair": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB80\\501 AX FLAIR 7000-2300_1.nrrd",
+        "seg": "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI\\Patient_Pat_MB80\\Segmentation_5.seg.nrrd"
+    }
+}
