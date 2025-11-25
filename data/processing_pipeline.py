@@ -5,6 +5,8 @@ from dataclasses import dataclass, field, fields
 import warnings
 import json
 import numpy as np
+import os, random
+from pathlib import Path
 
 
 @dataclass
@@ -97,12 +99,12 @@ def collect_dipg_data(root_folder):
                 lower = f.lower()
                 full_path = os.path.join(dirpath, f)
 
-                # FLAIR file
-                if "flair" in lower and lower.endswith(".nrrd"):
+                # segmentation file
+                if "post_bias_norm-label" in lower and lower.endswith(".nrrd"):
                     patient_flair = full_path
 
-                # Segmentation file
-                if "bias_norm-label" in lower and lower.endswith(".nrrd"):
+                # Flair file
+                elif "post_bias_norm" in lower and lower.endswith(".nrrd"):
                     patient_seg = full_path
 
         # Validate
@@ -166,6 +168,50 @@ def collect_plgg_data(root_folder):
 
     return patient_dict
 
+def crop_to_roi(stacked_data_images: np.array):
+    # was written for multi seq for a single sample, but I'm only using single channel (flair)
+    z_idxs, y_idxs, x_idxs = np.nonzero(stacked_data_images) # remove axis=0
+    z_min, y_min, x_min = [max(0, int(np.min(arr) - 1)) for arr in (z_idxs, y_idxs, x_idxs)]
+    z_max, y_max, x_max = [int(np.max(arr) + 1) for arr in (z_idxs, y_idxs, x_idxs)]
+    cropped_data = stacked_data_images[z_min:z_max, y_min:y_max, x_min:x_max] # stacked images is segmentated data, can just remove :, first dim
+
+    return cropped_data
+
+def train_val_test_split(data_dict: dict, tumour_type: str, output_path: str,
+                         train_ratio=0.7, val_ratio=0.15, test_ratio=0.15):
+
+    assert abs(train_ratio + val_ratio + test_ratio - 1.0) < 1e-6, \
+        "Train/val/test splits must sum to 1."
+
+    patient_ids = list(data_dict.keys())
+    random.shuffle(patient_ids)
+
+    n = len(patient_ids)
+    print(n, "for", tumour_type)
+    n_train = int(n * train_ratio)
+    n_val   = int(n * val_ratio)
+
+    train_ids = patient_ids[:n_train]
+    val_ids   = patient_ids[n_train:n_train + n_val]
+    test_ids  = patient_ids[n_train + n_val:]
+
+    # Save .npy files into subfolders
+    def save_split(split_ids, split_name):
+        split_dir = Path(output_path) / split_name / tumour_type
+        split_dir.mkdir(parents=True, exist_ok=True)
+
+        for pid in split_ids:
+            npy_arr = data_dict[pid]
+            out_file = split_dir / f"{pid}.npy"
+            np.save(out_file, npy_arr)
+
+    save_split(train_ids, "train")
+    save_split(val_ids, "val")
+    save_split(test_ids, "test")
+
+    print(f"[{tumour_type}] Train/Val/Test sizes = "
+          f"{len(train_ids)}/{len(val_ids)}/{len(test_ids)}")
+
 if __name__ == "__main__":
     parser = ArgumentParser(dataProcessConfig)
 
@@ -181,11 +227,11 @@ if __name__ == "__main__":
     cfg = dataProcessConfig(**vars(args))
 
     # get all input paths for plGG
-    # plggg: should have 353 (maybe 397) --> got 468
+    # plggg: should have 353 (maybe 397) --> got 468 --> ok
     plgg_dict = collect_plgg_data(cfg.plgg_path)
 
     # get all input paths for DIPG
-    # DIPG: should have 89 --> only got 47
+    # DIPG: should have 89 --> only got 11
     dipg_dict = collect_dipg_data(cfg.dipg_path)
 
     # get all input paths for medulloblastoma
@@ -206,58 +252,78 @@ if __name__ == "__main__":
     plgg_npys, dipg_npys, medullo_npys, = {}, {}, {} # plgg is already in npy
 
     # TODO: just for testing reasons, revert later
-    max_items = 5
+    max_items = 25
     i = 0
 
     for patient_id, nrrds in dipg_dict.items():
         i += 1
         flair = nrrd_to_npy(nrrds["flair"])
-        mask = nrrd_to_npy(nrrds["seg"])
-        print("dipg shape:", flair.shape)
+        mask = nrrd_to_npy(nrrds["seg"]).astype(bool)
+        # print("dipg shape:", flair.shape)
 
         if not flair.shape == mask.shape:
             print("shape mismatch between flair and mask:", flair.shape, mask.shape)
         
         seg_flair = flair.copy()
         seg_flair[~mask] = 0
-        dipg_npys[patient_id] = seg_flair
+        seg_flair_cropped = crop_to_roi(seg_flair)
+        dipg_npys[patient_id] = seg_flair_cropped
 
         if i >= max_items:
-            i = 0
             break
     
+    i = 0
     for patient_id, nrrds in medullo_dict.items():
         i += 1
         flair = nrrd_to_npy(nrrds["flair"])
         mask = nrrd_to_npy(nrrds["seg"])
-        print("medullo shape:", flair.shape)
+        # print("medullo shape:", flair.shape)
         if not flair.shape == mask.shape:
             print("shape mismatch between flair and mask:", flair.shape, mask.shape)
 
         seg_flair = flair.copy()
         seg_flair[~mask] = 0
-        medullo_npys[patient_id] = seg_flair
+        # crop to roi
+        seg_flair_cropped = crop_to_roi(seg_flair)
+        # print("after cropping to roi:", seg_flair_cropped.shape)
+        medullo_npys[patient_id] = seg_flair_cropped
 
         if i >= max_items:
-            i = 0
             break
 
-    # I think plgg already had the mask applied...
+    i = 0
     for patient_id, npys in plgg_dict.items():
         i += 1
-        seg = np.load(npys["seg"])
-        plgg_npys[patient_id] = seg
-        print("plgg shape:", seg.shape)
+        flair = np.load(npys["flair"])
+        mask = np.load(npys["seg"]).astype(bool)
+        
+        seg_flair = flair.copy()
+        seg_flair[~mask] = 0
+        # print("plgg shape:", seg_flair.shape)
+        # crop to roi
+        seg_flair_cropped = crop_to_roi(seg_flair)
+        # print("after cropping to roi:", seg_flair_cropped.shape)
+        plgg_npys[patient_id] = seg_flair_cropped
+
 
         if i >= max_items:
             i = 0
             break
 
-    # resize to the same shape (if not same shape) --> crop to the segmentation area? but how...
+    # divide to train/val/test + write to output data directory
+    print("\nStarting train/val/test splitting...")
 
-    # divide to train/val/test
+    tvt_out = os.path.join(cfg.output_path, "splits")
+    os.makedirs(tvt_out, exist_ok=True)
 
-    # write to output data directory
+    # Perform splits for each tumour type
+    train_val_test_split(plgg_npys,     tumour_type="plgg",     output_path=tvt_out)
+    train_val_test_split(dipg_npys,     tumour_type="dipg",     output_path=tvt_out)
+    train_val_test_split(medullo_npys,  tumour_type="medulloblastoma", output_path=tvt_out)
+
+    print("\nFinished saving train/val/test .npy files.")
+    print("Output structure written to:", tvt_out)
+    print("Finished processing pipeline.")
 
     # NOTE: will probably need to save to the shared drive (try to save a smaller 
     # subet locally first)
@@ -271,4 +337,3 @@ if __name__ == "__main__":
     # ... etc you get the point
     # test
     # ... same format  
-    print("Finished processing pipeline.")
