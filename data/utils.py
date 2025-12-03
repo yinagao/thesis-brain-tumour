@@ -7,7 +7,11 @@ import nibabel as nib
 
 def nrrd_to_npy(nrrd_path: str, npy_path: str = None):
 
-    data, header = nrrd.read(nrrd_path)
+    try: 
+        data, header = nrrd.read(nrrd_path)
+    except Exception:
+        print("error loading", nrrd_path)
+        return None
     return data 
 
     # if npy_path is None:

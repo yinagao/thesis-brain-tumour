@@ -6,6 +6,7 @@ import warnings
 import json
 import numpy as np
 import os, random
+from tqdm import tqdm
 from pathlib import Path
 
 
@@ -184,6 +185,7 @@ def train_val_test_split(data_dict: dict, tumour_type: str, output_path: str,
         "Train/val/test splits must sum to 1."
 
     patient_ids = list(data_dict.keys())
+    random.seed(888)
     random.shuffle(patient_ids)
 
     n = len(patient_ids)
@@ -232,18 +234,18 @@ if __name__ == "__main__":
 
     # get all input paths for DIPG
     # DIPG: should have 89 --> only got 11
-    dipg_dict = collect_dipg_data(cfg.dipg_path)
+    # dipg_dict = collect_dipg_data(cfg.dipg_path)
 
     # get all input paths for medulloblastoma
     # medulloblastoma: should have 106 --> YEP
     medullo_dict = collect_medullo_data(cfg.medullo_path) 
     print("plgg samples:", len(plgg_dict), 
-          "dipg samples:", len(dipg_dict), 
+        #   "dipg samples:", len(dipg_dict), 
           "medullo samples:", len(medullo_dict))
 
     if cfg.save_to_jsons:
         save_dict_to_json(medullo_dict, os.path.join(cfg.output_path, "medullo_data.json"))
-        save_dict_to_json(dipg_dict, os.path.join(cfg.output_path, "dipg_data.json"))
+        # save_dict_to_json(dipg_dict, os.path.join(cfg.output_path, "dipg_data.json"))
         save_dict_to_json(plgg_dict, os.path.join(cfg.output_path, "plgg_data.json"))
 
     # TODO: other dataset processing
@@ -251,51 +253,56 @@ if __name__ == "__main__":
     # run conversions + apply masks to get segmentated npys
     plgg_npys, dipg_npys, medullo_npys, = {}, {}, {} # plgg is already in npy
 
-    # TODO: just for testing reasons, revert later
-    max_items = 25
-    i = 0
+    # # TODO: just for testing reasons, revert later
+    # max_items = 25
+    # i = 0
 
-    for patient_id, nrrds in dipg_dict.items():
-        i += 1
-        flair = nrrd_to_npy(nrrds["flair"])
-        mask = nrrd_to_npy(nrrds["seg"]).astype(bool)
-        # print("dipg shape:", flair.shape)
+    # for patient_id, nrrds in dipg_dict.items():
+    #     i += 1
+    #     flair = nrrd_to_npy(nrrds["flair"])
+    #     mask = nrrd_to_npy(nrrds["seg"]).astype(bool)
+    #     # print("dipg shape:", flair.shape)
 
-        if not flair.shape == mask.shape:
-            print("shape mismatch between flair and mask:", flair.shape, mask.shape)
+    #     if not flair.shape == mask.shape:
+    #         raise Exception("shape mismatch between image and mask")
         
-        seg_flair = flair.copy()
-        seg_flair[~mask] = 0
-        seg_flair_cropped = crop_to_roi(seg_flair)
-        dipg_npys[patient_id] = seg_flair_cropped
+    #     seg_flair = flair.copy()
+    #     seg_flair[~mask] = 0
+    #     seg_flair_cropped = crop_to_roi(seg_flair)
+    #     dipg_npys[patient_id] = seg_flair_cropped
 
-        if i >= max_items:
-            break
+        # if i >= max_items:
+        #     break
     
-    i = 0
+    # i = 0
     for patient_id, nrrds in medullo_dict.items():
-        i += 1
+        # i += 1
         flair = nrrd_to_npy(nrrds["flair"])
-        mask = nrrd_to_npy(nrrds["seg"])
-        # print("medullo shape:", flair.shape)
+        if flair is None:
+            continue
+        mask = nrrd_to_npy(nrrds["seg"]).astype(bool)
         if not flair.shape == mask.shape:
-            print("shape mismatch between flair and mask:", flair.shape, mask.shape)
+            raise Exception("shape mismatch between image and mask")
 
         seg_flair = flair.copy()
         seg_flair[~mask] = 0
         # crop to roi
         seg_flair_cropped = crop_to_roi(seg_flair)
-        # print("after cropping to roi:", seg_flair_cropped.shape)
+        print("medullo shape, mask shape, seg shape:", flair.shape, mask.shape, seg_flair_cropped.shape)
+
         medullo_npys[patient_id] = seg_flair_cropped
 
-        if i >= max_items:
-            break
+        # if i >= max_items:
+        #     break
 
-    i = 0
-    for patient_id, npys in plgg_dict.items():
-        i += 1
+    # i = 0
+    for patient_id, npys in tqdm(plgg_dict.items()):
+        # i += 1
         flair = np.load(npys["flair"])
         mask = np.load(npys["seg"]).astype(bool)
+
+        if not flair.shape == mask.shape:
+            raise Exception("shape mismatch between image and mask")        
         
         seg_flair = flair.copy()
         seg_flair[~mask] = 0
@@ -306,9 +313,9 @@ if __name__ == "__main__":
         plgg_npys[patient_id] = seg_flair_cropped
 
 
-        if i >= max_items:
-            i = 0
-            break
+        # if i >= max_items:
+        #     i = 0
+        #     break
 
     # divide to train/val/test + write to output data directory
     print("\nStarting train/val/test splitting...")
@@ -318,7 +325,7 @@ if __name__ == "__main__":
 
     # Perform splits for each tumour type
     train_val_test_split(plgg_npys,     tumour_type="plgg",     output_path=tvt_out)
-    train_val_test_split(dipg_npys,     tumour_type="dipg",     output_path=tvt_out)
+    # train_val_test_split(dipg_npys,     tumour_type="dipg",     output_path=tvt_out)
     train_val_test_split(medullo_npys,  tumour_type="medulloblastoma", output_path=tvt_out)
 
     print("\nFinished saving train/val/test .npy files.")
