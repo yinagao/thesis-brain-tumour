@@ -285,9 +285,7 @@ class Trainer:
         return precision, recall, f1
 
 
-# ---------------------------------------------------------
 # Experiment Runner
-# ---------------------------------------------------------
 def run_experiment(backbone_name, loaders, device, results_dir, epochs, learning_rate, batch_size):
 
     exp_name = f"{backbone_name}_bs{batch_size}_lr{learning_rate}"
@@ -314,9 +312,6 @@ def run_experiment(backbone_name, loaders, device, results_dir, epochs, learning
     trainer.test()
 
 
-# ---------------------------------------------------------
-# Main
-# ---------------------------------------------------------
 def main():
     parser = argparse.ArgumentParser(description="3D Brain Tumour Classification")
 

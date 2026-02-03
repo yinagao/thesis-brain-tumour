@@ -23,7 +23,7 @@ class dataProcessConfig():
 
     # patient_id > FLAIR > preprocessed_FLAIR.npy is the FLAIR, preprocessed_segmentation.npy is the segmentation
     plgg_path: str = "Z:/Datasets/MedicalImages/BrainData/SickKids/preprocessed_pLGG_EN_Nov2023_KK"
-    output_path: str = "./test_output"
+    output_path: str = "./data_output"
     save_to_jsons: bool = False
 
 def save_dict_to_json(data_dict, output_file):
