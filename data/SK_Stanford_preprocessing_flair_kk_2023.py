@@ -17,17 +17,17 @@ import SimpleITK as sitk
 # Paths for MRIs and tumor segmentations
 # data_dir = r"C:\Users\karee\Documents\pLGG_EN_Nov2023\SK" # Location of FLAIR sequence and tumor segmentations
 # data_dir = r"C:\Users\kareem kudus\Documents\pLGG_EN_Nov2023\SK" # Location of FLAIR sequence and tumor segmentations
-data_dir1 = r"Z:\Datasets\MedicalImages\BrainData\SickKids\pLGG_EN_Nov2023\Stanford_pLGG" # Location of FLAIR sequence and tumor segmentations
-data_dir2 = r"Z:\Datasets\MedicalImages\BrainData\SickKids\pLGG_EN_Nov2023\Stanford_EN" # Location of FLAIR sequence and tumor segmentations
+data_dir1 = "C:/Users/Yina Gao/Documents/thesis-brain-tumour/data_output/dipg_before_preprocessing" # Location of FLAIR sequence and tumor segmentations
+# data_dir2 = r"Z:\Datasets\MedicalImages\BrainData\SickKids\pLGG_EN_Nov2023\Stanford_EN" # Location of FLAIR sequence and tumor segmentations
 atlas = r"Z:\Projects\SickKids_Brain_Preprocessing\SK_preprocessing_components\sri24_atlas\templates\T1.nii" # The template we are registering to
-output_path = r"C:\Users\Yina Gao\Documents\thesis-brain-tumour\data_output\dipg_preprocessed"
+output_path = "C:/Users/Yina Gao/Documents/thesis-brain-tumour/data_output/dipg_preprocessed"
 
 # Path to 3DSLICER (used for reorienting, registering, resampling volumes)
-slicer_dir = r"C:\Users\Yina Gao\AppData\Local\slicer.org\3D Slicer 5.10.0\bin\PythonSlicer.exe"
+slicer_dir = "C:/Users/Yina Gao/AppData/Local/slicer.org/3D Slicer 5.10.0/bin/PythonSlicer.exe"
 
 # Path to tool used for skull stripping
 # bet_path = r'C:\Users\research\Documents\HD-BET\HD_BET\entry_point.py'
-bet_path = r"C:\Users\Yina Gao\Documents\thesis-brain-tumour\.venv\Lib\site-packages\HD_BET\entry_point.py"
+bet_path = "C:/Users/Yina Gao/Documents/thesis-brain-tumour/.venv/Lib/site-packages/HD_BET/entry_point.py"
 
 
 # Settings for reorientation and registration
@@ -57,18 +57,26 @@ def find_flair_and_seg_files(path, patient_file_info=None):
     if patient_file_info is None:
         patient_file_info = {}
 
-    print(os.listdir(path))
-    for p in os.listdir(path):
-        print(p)
+    # print(os.listdir(path))
+    directories = [d for d in os.listdir(path) if os.path.isdir(os.path.join(path, d))]
+
+    for p in directories:
+        # print(p)
 
         # Find the segmentation file
         seg_f_name = None
         flair_f_name = None
         for f_name in os.listdir(os.path.join(path, p)):
-            if "seg" in f_name:
+            if f_name.endswith("bias_norm-label.nrrd"):
                 seg_f_name = f_name
-            else:
+            elif f_name.endswith("bias_norm.nrrd"):
                 flair_f_name = f_name
+
+        if not flair_f_name:
+            print("SKIPPING -- NO FLAIR FOUND FOR:", p)
+            continue
+        
+        print(p)
         print(seg_f_name)
         print(flair_f_name)
         print("\n")
@@ -189,7 +197,7 @@ def determine_output_file(output_dir, input_file_full_path, operation):
 if __name__ == '__main__':
     # Load in file names for FLAIR images and ROIs
     flair_and_seg_info = find_flair_and_seg_files(data_dir1)
-    flair_and_seg_info = find_flair_and_seg_files(data_dir2, flair_and_seg_info)
+    # flair_and_seg_info = find_flair_and_seg_files(data_dir2, flair_and_seg_info)
     print(flair_and_seg_info)
 
     # Create directory for writing data
