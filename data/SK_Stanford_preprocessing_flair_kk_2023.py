@@ -197,15 +197,12 @@ def determine_output_file(output_dir, input_file_full_path, operation):
 if __name__ == '__main__':
     # Load in file names for FLAIR images and ROIs
     flair_and_seg_info = find_flair_and_seg_files(data_dir1)
-    # flair_and_seg_info = find_flair_and_seg_files(data_dir2, flair_and_seg_info)
-    print(flair_and_seg_info)
 
     # Create directory for writing data
     try:
         os.mkdir(output_path)
     except:
         print("Output Directory already exists")
-    print(flair_and_seg_info)
 
     # Loop through all patients
     for patient_id in sorted(list(flair_and_seg_info.keys())):
@@ -240,7 +237,6 @@ if __name__ == '__main__':
             original_seg_full_path = determine_output_file(os.path.join(output_path_patient,"FLAIR"), seg_to_nifti_full_path, "original")
             convert_to_nifti(seg_to_nifti_full_path, original_seg_full_path, True)
             print("CONVERTED THE SEGMENTATION")
-
 
 
             # Reorient FLAIR sequence
