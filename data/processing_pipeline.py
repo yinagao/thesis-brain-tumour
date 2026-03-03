@@ -19,12 +19,12 @@ class dataProcessConfig():
     medullo_path: str = "Z:/Datasets/MedicalImages/BrainData/SickKids/Medulloblastoma/MRI"
     
     # patient_id > 8 AX FLAIR.nrrd is the flair sequence, anything with -label or -seg is the segment, something like post-bias-norm is the scan
-    dipg_path: str = "Z:/Datasets/MedicalImages/BrainData/SickKids/DIPG/segmentations"
+    dipg_path: str = "./data_output/dipg_preprocessed"
 
     # patient_id > FLAIR > preprocessed_FLAIR.npy is the FLAIR, preprocessed_segmentation.npy is the segmentation
     plgg_path: str = "Z:/Datasets/MedicalImages/BrainData/SickKids/preprocessed_pLGG_EN_Nov2023_KK"
     output_path: str = "./data_output"
-    save_to_jsons: bool = False
+    save_to_jsons: bool = True
     run_plgg: bool = True
     run_dipg: bool = True
     run_mb: bool = True
@@ -90,7 +90,7 @@ def collect_dipg_data(root_folder):
 
     # patient-level directories
     for patient in os.listdir(root_folder):
-        patient_path = os.path.join(root_folder, patient)
+        patient_path = os.path.join(root_folder, patient, "FLAIR")
         if not os.path.isdir(patient_path):
             continue
 
@@ -174,6 +174,8 @@ def collect_plgg_data(root_folder):
 def crop_to_roi(stacked_data_images: np.array):
     # was written for multi seq for a single sample, but I'm only using single channel (flair)
     z_idxs, y_idxs, x_idxs = np.nonzero(stacked_data_images) # remove axis=0
+    # print(stacked_data_images.shape)
+    # print(len(z_idxs), len(y_idxs), len(x_idxs))
     z_min, y_min, x_min = [max(0, int(np.min(arr) - 1)) for arr in (z_idxs, y_idxs, x_idxs)]
     z_max, y_max, x_max = [int(np.max(arr) + 1) for arr in (z_idxs, y_idxs, x_idxs)]
     cropped_data = stacked_data_images[z_min:z_max, y_min:y_max, x_min:x_max] # stacked images is segmentated data, can just remove :, first dim
@@ -234,8 +236,7 @@ if __name__ == "__main__":
     # plggg: should have 353 (maybe 397) --> got 468 --> ok
     plgg_dict = collect_plgg_data(cfg.plgg_path)
 
-    # get all input paths for DIPG
-    # DIPG: should have 89 --> only got 11
+    # get all input paths for DIPG --> have 82
     dipg_dict = collect_dipg_data(cfg.dipg_path)
 
     # get all input paths for medulloblastoma
@@ -247,7 +248,7 @@ if __name__ == "__main__":
 
     if cfg.save_to_jsons:
         save_dict_to_json(medullo_dict, os.path.join(cfg.output_path, "medullo_data.json"))
-        # save_dict_to_json(dipg_dict, os.path.join(cfg.output_path, "dipg_data.json"))
+        save_dict_to_json(dipg_dict, os.path.join(cfg.output_path, "dipg_data.json"))
         save_dict_to_json(plgg_dict, os.path.join(cfg.output_path, "plgg_data.json"))
 
     # TODO: other dataset processing
@@ -256,7 +257,7 @@ if __name__ == "__main__":
     plgg_npys, dipg_npys, medullo_npys, = {}, {}, {} # plgg is already in npy
     
     if cfg.run_mb:
-        for patient_id, nrrds in medullo_dict.items():
+        for patient_id, nrrds in tqdm(medullo_dict.items()):
             flair = nrrd_to_npy(nrrds["flair"])
             if flair is None:
                 continue
@@ -268,7 +269,6 @@ if __name__ == "__main__":
             seg_flair[~mask] = 0
             # crop to roi
             seg_flair_cropped = crop_to_roi(seg_flair)
-            print("medullo shape, mask shape, seg shape:", flair.shape, mask.shape, seg_flair_cropped.shape)
 
             medullo_npys[patient_id] = seg_flair_cropped
 
@@ -282,26 +282,29 @@ if __name__ == "__main__":
             
             seg_flair = flair.copy()
             seg_flair[~mask] = 0
-            # print("plgg shape:", seg_flair.shape)
             # crop to roi
             seg_flair_cropped = crop_to_roi(seg_flair)
-            # print("after cropping to roi:", seg_flair_cropped.shape)
             plgg_npys[patient_id] = seg_flair_cropped
 
-    if cfg.dipg:
-        for patient_id, npys in tqdm(dipg_dict.items()):
+    if cfg.run_dipg:
+        # false_count = []
+        for patient_id, npys in dipg_dict.items():
             flair = np.load(npys["flair"])
-            mask = np.load(npys["seg"]).astype(bool)
+            mask = np.load(npys["seg"])
 
             if not flair.shape == mask.shape:
                 raise Exception("shape mismatch between image and mask")        
             
+            if np.sum(mask) == 0.0:
+                continue
+            
+            mask = mask.astype(bool)
             seg_flair = flair.copy()
             seg_flair[~mask] = 0
             # crop to roi
             seg_flair_cropped = crop_to_roi(seg_flair)
-            # print("after cropping to roi:", seg_flair_cropped.shape)
-            plgg_npys[patient_id] = seg_flair_cropped
+            dipg_npys[patient_id] = seg_flair_cropped
+    
 
     # divide to train/val/test + write to output data directory
     print("\nStarting train/val/test splitting...")

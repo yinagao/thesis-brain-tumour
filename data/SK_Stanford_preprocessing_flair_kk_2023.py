@@ -17,7 +17,7 @@ import SimpleITK as sitk
 # Paths for MRIs and tumor segmentations
 # data_dir = r"C:\Users\karee\Documents\pLGG_EN_Nov2023\SK" # Location of FLAIR sequence and tumor segmentations
 # data_dir = r"C:\Users\kareem kudus\Documents\pLGG_EN_Nov2023\SK" # Location of FLAIR sequence and tumor segmentations
-data_dir1 = "C:/Users/Yina Gao/Documents/thesis-brain-tumour/data_output/dipg_before_preprocessing" # Location of FLAIR sequence and tumor segmentations
+data_dir1 = "C:/Users/Yina Gao/Documents/thesis-brain-tumour/data_output/dipg_before_preprocessing_redo" # Location of FLAIR sequence and tumor segmentations
 # data_dir2 = r"Z:\Datasets\MedicalImages\BrainData\SickKids\pLGG_EN_Nov2023\Stanford_EN" # Location of FLAIR sequence and tumor segmentations
 atlas = r"Z:\Projects\SickKids_Brain_Preprocessing\SK_preprocessing_components\sri24_atlas\templates\T1.nii" # The template we are registering to
 output_path = "C:/Users/Yina Gao/Documents/thesis-brain-tumour/data_output/dipg_preprocessed"
@@ -67,7 +67,7 @@ def find_flair_and_seg_files(path, patient_file_info=None):
         seg_f_name = None
         flair_f_name = None
         for f_name in os.listdir(os.path.join(path, p)):
-            if f_name.endswith("bias_norm-label.nrrd"):
+            if f_name.endswith("bias_norm-tissue-label.nrrd") or f_name.endswith("bias_norm-label.nrrd"):
                 seg_f_name = f_name
             elif f_name.endswith("bias_norm.nrrd"):
                 flair_f_name = f_name
@@ -212,7 +212,7 @@ if __name__ == '__main__':
             # Preprocess FLAIR image
 
             print("\nPatient: " + patient_id)
-            print(flair_and_seg_info[patient_id])
+            # print(flair_and_seg_info[patient_id])
             output_path_patient = os.path.join(output_path, patient_id)
             # Make directory for this patient
             try:
