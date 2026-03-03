@@ -21,12 +21,6 @@ from sklearn.metrics import (
 
 NUM_CLASSES = 3
 
-labels_map = {
-    0: "medulloblastoma",
-    1: "plgg",
-    2: "dipg",
-}
-
 def pad_to_shape(volume, target_shape):
     """Pads 3D numpy array (D,H,W) to target_shape with zeros."""
     pad_width = []
@@ -64,7 +58,7 @@ class AddChannel:
 
 
 class TumourClassifier3D(nn.Module):
-    def __init__(self, backbone_name='efficientnet_b1.ft_in1k', pretrained=True, num_classes=1):
+    def __init__(self, backbone_name='efficientnet_b1.ft_in1k', pretrained=True, num_classes=NUM_CLASSES):
         super().__init__()
         self.model = timm_3d.create_model(
             backbone_name, pretrained=pretrained, in_chans=1, num_classes=0
@@ -81,7 +75,8 @@ class Trainer:
         model,
         train_loader,
         val_loader,
-        test_loader=None,
+        test_loader,
+        labels_map,
         num_classes=NUM_CLASSES,
         device="cuda",
         save_dir="results",
@@ -95,6 +90,7 @@ class Trainer:
         self.val_loader = val_loader
         self.test_loader = test_loader
         self.num_classes = num_classes
+        self.labels_map = labels_map
 
         self.criterion = nn.CrossEntropyLoss()
         self.optimizer = optim.Adam(self.model.parameters(), lr=learning_rate)
@@ -166,10 +162,9 @@ class Trainer:
                 x = x.to(self.device)
                 y = y.to(self.device)
 
-                logits = self.model(x).squeeze(-1)
-                probs = torch.softmax(logits)
-
-                preds = torch.argmax(probs, dim=1)
+                logits = self.model(x)
+                preds = torch.argmax(logits, dim=1)
+                probs = torch.softmax(logits, dim=1)
 
                 preds_list.append(preds.cpu().numpy())
                 probs_list.append(probs.cpu().numpy())
@@ -198,6 +193,11 @@ class Trainer:
 
         plt.figure()
         for i in range(self.num_classes):
+            # skip class if not present in ground truth
+            if np.sum(labels_bin[:, i]) == 0:
+                print(f"Skipping ROC for class {i} — no positive samples.")
+                continue
+
             fpr, tpr, _ = roc_curve(labels_bin[:, i], probs[:, i])
             roc_auc = auc(fpr, tpr)
             plt.plot(fpr, tpr, label=f"Class {i} (AUC={roc_auc:.3f})")
@@ -214,10 +214,10 @@ class Trainer:
     def compute_confusion_metrics(self, loader, split="test"):
         preds, probs, labels = self._collect_outputs(loader)
 
-        text_preds  = [labels_map[int(p)] for p in preds]
-        text_labels = [labels_map[int(l)] for l in labels]
+        text_preds  = [self.labels_map[int(p)] for p in preds]
+        text_labels = [self.labels_map[int(l)] for l in labels]
 
-        all_label_names = list(labels_map.values())
+        all_label_names = list(self.labels_map.values())
 
         cm = confusion_matrix(text_labels, text_preds, labels=all_label_names)
 
@@ -269,6 +269,8 @@ class Trainer:
             if self._check_early_stopping(val_loss):
                 break
 
+        # restore best model
+        self.model.load_state_dict(torch.load(os.path.join(self.save_dir, f"{self.exp_name}_best_model.pt")))
         self.plot_loss_curve()
         self.plot_auc_curve(self.val_loader, split="val")
 
@@ -287,7 +289,7 @@ class Trainer:
 
 
 # Experiment Runner
-def run_experiment(backbone_name, loaders, device, results_dir, epochs, learning_rate, batch_size):
+def run_experiment(backbone_name, loaders, labels_map, device, results_dir, epochs, learning_rate, batch_size):
 
     exp_name = f"{backbone_name}_bs{batch_size}_lr{learning_rate}"
     save_dir = os.path.join(results_dir, exp_name)
@@ -302,9 +304,11 @@ def run_experiment(backbone_name, loaders, device, results_dir, epochs, learning
         train_loader=loaders[0],
         val_loader=loaders[1],
         test_loader=loaders[2],
+        labels_map=labels_map,
         device=device,
         save_dir=save_dir,
         patience=5,
+        num_classes=NUM_CLASSES,
         learning_rate=learning_rate,
         exp_name=exp_name
     )
@@ -364,16 +368,21 @@ def main():
         extensions=[".npy"]
     )
 
+    labels_map = {v: k for k, v in train_dataset.class_to_idx.items()}
+    assert train_dataset.class_to_idx == val_dataset.class_to_idx
+    assert train_dataset.class_to_idx == test_dataset.class_to_idx
+
     loaders = (
-        DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True),
-        DataLoader(val_dataset, batch_size=args.batch_size, shuffle=True),
-        DataLoader(test_dataset, batch_size=args.batch_size, shuffle=True)
+        DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, num_workers=4, pin_memory=True),
+        DataLoader(val_dataset, batch_size=args.batch_size, shuffle=False, num_workers=4, pin_memory=True), # ROC curves depend on consistent ordering
+        DataLoader(test_dataset, batch_size=args.batch_size, shuffle=False, num_workers=4, pin_memory=True)
     )
 
     for backbone in args.backbones:
         run_experiment(
             backbone,
             loaders,
+            labels_map,
             device,
             args.results_dir,
             epochs=args.epochs,

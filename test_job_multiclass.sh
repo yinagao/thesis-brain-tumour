@@ -17,7 +17,7 @@ BATCH_SIZES=(1)
 
 LEARNING_RATES=(0.0003)
 
-EPOCHS=
+EPOCHS=3
 
 BACKBONES=(
     "tf_efficientnet_b2.in1k"
