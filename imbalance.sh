@@ -15,9 +15,11 @@ TEST_DIR="/hpf/largeprojects/fkhalvati/Yina/multiclass_splits/test"
 
 BATCH_SIZES=(4)
 
-LEARNING_RATES=(0.0003)
+LEARNING_RATES=(0.0001)
 
 EPOCHS=30
+
+UNFREEZE_LAST_N=0
 
 BACKBONES=(
     "resnet18.a1_in1k"
@@ -27,7 +29,7 @@ BACKBONES=(
     "densenet121"
 )
 
-RESULTS_DIR="/hpf/largeprojects/fkhalvati/Yina/multiclass_frozen_results_all"  
+RESULTS_DIR="/hpf/largeprojects/fkhalvati/Yina/CE_weighted"  
 
 echo "============================================"
 echo "   STARTING GRID SEARCH EXPERIMENTS"
@@ -45,12 +47,13 @@ for BACKBONE in "${BACKBONES[@]}"; do
             echo " - Epochs:        $EPOCHS"
             echo "--------------------------------------------"
 
-            python train_multiclass_frozen_experiments.py \
+            python train_multiclass_experiments_imbalance.py \
                 --train_path "$TRAIN_DIR" \
                 --val_path "$VAL_DIR" \
                 --test_path "$TEST_DIR" \
                 --batch_size $BATCH \
                 --learning_rate $LR \
+                --unfreeze_last_n $UNFREEZE_LAST_N \
                 --epochs $EPOCHS \
                 --results_dir "$RESULTS_DIR" \
                 --backbones "${BACKBONES[@]}"
