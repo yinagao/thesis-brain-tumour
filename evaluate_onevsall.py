@@ -13,15 +13,18 @@ from sklearn.metrics import (
 )
 from sklearn.preprocessing import label_binarize
 
-## UPDATE
+
+# update these
+
 csv_paths = {
-    "medulloblastoma": "medulloblastoma_probs.csv",
-    "plgg": "plgg_probs.csv",
-    "ependymoma": "ependymoma_probs.csv"
+    "dipg": "dipg_preds.csv",
+    "plgg": "plgg_preds.csv",
+    "ependymoma": "epn_preds.csv"
 }
 
 save_dir = "ensemble_results"
 os.makedirs(save_dir, exist_ok=True)
+
 
 dfs = []
 
@@ -29,7 +32,10 @@ for class_name, path in csv_paths.items():
 
     df = pd.read_csv(path)
 
-    df = df.rename(columns={"prob": f"prob_{class_name}"})
+    df = df.rename(columns={
+        "logits": f"logit_{class_name}",
+        "prob": f"prob_{class_name}"
+    })
 
     dfs.append(df)
 
@@ -38,16 +44,22 @@ merged = dfs[0]
 for df in dfs[1:]:
     merged = merged.merge(df, on=["file", "true_label"])
 
-print("Merged dataset size:", merged.shape)
+print("Merged shape:", merged.shape)
 
 class_names = list(csv_paths.keys())
 
+logit_cols = [f"logit_{c}" for c in class_names]
 prob_cols = [f"prob_{c}" for c in class_names]
 
+logits = merged[logit_cols].values
 probs = merged[prob_cols].values
+
 true_labels = merged["true_label"].values
 
-pred_labels = np.argmax(probs, axis=1)
+
+
+pred_labels = np.argmax(logits, axis=1)
+
 
 accuracy = accuracy_score(true_labels, pred_labels)
 
@@ -63,29 +75,28 @@ precision_class, recall_class, f1_class, _ = precision_recall_fscore_support(
     true_labels, pred_labels, average=None
 )
 
-print("\n----- Overall Metrics -----")
-
+print("\nOverall Metrics")
 print("Accuracy:", accuracy)
 
-print("\nMacro metrics")
+print("\nMacro")
 print("Precision:", precision_macro)
 print("Recall:", recall_macro)
 print("F1:", f1_macro)
 
-print("\nMicro metrics")
+print("\nMicro")
 print("Precision:", precision_micro)
 print("Recall:", recall_micro)
 print("F1:", f1_micro)
 
-
-print("\nPer-class metrics")
-
+print("\nPer Class")
 for i, name in enumerate(class_names):
     print(
-        f"{name} | Precision: {precision_class[i]:.4f} "
-        f"Recall: {recall_class[i]:.4f} "
-        f"F1: {f1_class[i]:.4f}"
+        f"{name} | "
+        f"Precision {precision_class[i]:.4f} "
+        f"Recall {recall_class[i]:.4f} "
+        f"F1 {f1_class[i]:.4f}"
     )
+
 
 cm = confusion_matrix(true_labels, pred_labels)
 
@@ -100,6 +111,7 @@ plt.tight_layout()
 
 plt.savefig(os.path.join(save_dir, "confusion_matrix.png"))
 plt.close()
+
 
 y_true_bin = label_binarize(true_labels, classes=range(len(class_names)))
 
@@ -117,8 +129,9 @@ for i, class_name in enumerate(class_names):
     plt.plot(
         fpr[i],
         tpr[i],
-        label=f"{class_name} (AUC = {roc_auc[i]:.3f})"
+        label=f"{class_name} (AUC={roc_auc[i]:.3f})"
     )
+
 
 fpr["micro"], tpr["micro"], _ = roc_curve(
     y_true_bin.ravel(),
@@ -132,8 +145,9 @@ plt.plot(
     tpr["micro"],
     linestyle=":",
     linewidth=3,
-    label=f"micro-average (AUC = {roc_auc['micro']:.3f})"
+    label=f"micro-average (AUC={roc_auc['micro']:.3f})"
 )
+
 
 all_fpr = np.unique(np.concatenate([fpr[i] for i in range(len(class_names))]))
 
@@ -151,21 +165,22 @@ plt.plot(
     mean_tpr,
     linestyle="--",
     linewidth=3,
-    label=f"macro-average (AUC = {roc_auc['macro']:.3f})"
+    label=f"macro-average (AUC={roc_auc['macro']:.3f})"
 )
 
 plt.plot([0, 1], [0, 1], "--", color="gray")
 
 plt.xlabel("False Positive Rate")
 plt.ylabel("True Positive Rate")
-plt.title("Multiclass ROC Curves")
 
+plt.title("Multiclass ROC Curves")
 plt.legend(loc="lower right")
 
 plt.tight_layout()
 
 plt.savefig(os.path.join(save_dir, "roc_curves.png"))
 plt.close()
+
 
 merged["pred_label"] = pred_labels
 
@@ -174,30 +189,4 @@ merged.to_csv(
     index=False
 )
 
-metrics_df = pd.DataFrame({
-    "metric": [
-        "accuracy",
-        "precision_macro",
-        "recall_macro",
-        "f1_macro",
-        "precision_micro",
-        "recall_micro",
-        "f1_micro"
-    ],
-    "value": [
-        accuracy,
-        precision_macro,
-        recall_macro,
-        f1_macro,
-        precision_micro,
-        recall_micro,
-        f1_micro
-    ]
-})
-
-metrics_df.to_csv(
-    os.path.join(save_dir, "metrics_summary.csv"),
-    index=False
-)
-
-print("\nResults saved to:", save_dir)
+print("\nSaved results to:", save_dir)

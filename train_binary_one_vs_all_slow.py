@@ -168,7 +168,7 @@ class Trainer:
     def _collect_outputs(self, loader):
         self.model.eval()
 
-        preds_list, probs_list, labels_list, files_list = [], [], [], []
+        preds_list, logits_list, probs_list, labels_list, files_list = [], [], [], [], []
 
         with torch.no_grad():
             start_idx = 0
@@ -183,6 +183,7 @@ class Trainer:
                 preds = (probs > 0.5).float()
 
                 preds_list.append(preds.cpu().numpy())
+                logits_list.append(logits.cpu().numpy())
                 probs_list.append(probs.cpu().numpy())
                 labels_list.append(y.cpu().numpy())
 
@@ -194,10 +195,11 @@ class Trainer:
                 start_idx += batch_size
 
         preds = np.concatenate(preds_list)
+        logits = np.concatenate(logits_list)
         probs = np.concatenate(probs_list)
         labels = np.concatenate(labels_list)
 
-        return preds, probs, labels, files_list
+        return preds, logits, probs, labels, files_list
 
     def plot_loss_curve(self):
         plt.figure()
@@ -211,22 +213,22 @@ class Trainer:
     
     def save_probs(self, loader, split="test"):
 
-        preds, probs, labels, files = self._collect_outputs(loader)
+        preds, logits, probs, labels, files = self._collect_outputs(loader)
 
         save_path = os.path.join(
             self.save_dir,
-            f"{self.exp_name}_{split}_probs.csv"
+            f"{self.exp_name}_{split}_preds.csv"
         )
 
         with open(save_path, "w", newline="") as f:
             writer = csv.writer(f)
-            writer.writerow(["file", "true_label", "prob"])
+            writer.writerow(["file", "true_label", "logit", "prob"])
 
-            for file, label, prob in zip(files, labels, probs):
-                writer.writerow([file, int(label), float(prob)])
+            for file, label, logit, prob in zip(files, labels, logits, probs):
+                writer.writerow([file, int(label), float(logit), float(prob)])
 
     def plot_auc_curve(self, loader, split="val"):
-        preds, probs, labels, _ = self._collect_outputs(loader)
+        preds, _, probs, labels, _ = self._collect_outputs(loader)
 
         # Binary ROC: treat POSITIVE_CLASS as the "positive"
         binary_labels = (labels == self.pos_class).astype(int)
@@ -246,7 +248,7 @@ class Trainer:
         plt.close()
 
     def compute_confusion_metrics(self, loader, split="test"):
-        preds, probs, labels, _ = self._collect_outputs(loader)
+        preds, _, probs, labels, _ = self._collect_outputs(loader)
 
         # text_preds  = [self.labels_map[int(p)] for p in preds]
         # text_labels = [self.labels_map[int(l)] for l in labels]
