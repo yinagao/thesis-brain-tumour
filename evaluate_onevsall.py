@@ -12,16 +12,28 @@ from sklearn.metrics import (
     auc
 )
 from sklearn.preprocessing import label_binarize
+from torchvision.datasets import DatasetFolder
+from collections import Counter
 
 
 # update these
 
-csv_paths = {
-    "dipg": "dipg_preds.csv",
-    "plgg": "plgg_preds.csv",
-    "ependymoma": "epn_preds.csv"
-}
 
+csv_paths = {
+    "dipg": r"Z:\Yina\onevsall\dipg\resnext50_32x4d.fb_swsl_ig1b_ft_in1k_pos0_bs4_lr0.0001\resnext50_32x4d.fb_swsl_ig1b_ft_in1k_pos0_bs4_lr0.0001_test_preds.csv",
+    "medulloblastoma": r"Z:\Yina\onevsall\medulloblastoma\resnext50_32x4d.fb_swsl_ig1b_ft_in1k_pos1_bs4_lr0.0001\resnext50_32x4d.fb_swsl_ig1b_ft_in1k_pos1_bs4_lr0.0001_test_preds.csv",
+    "plgg": r"Z:\Yina\onevsall\plgg\resnext50_32x4d.fb_swsl_ig1b_ft_in1k_pos2_bs4_lr0.0001\resnext50_32x4d.fb_swsl_ig1b_ft_in1k_pos2_bs4_lr0.0001_test_preds.csv",
+}
+model_name = "rexnext50"
+
+test_dataset = DatasetFolder(
+    "data_output/splits/test",
+    loader=np.load,
+    extensions=[".npy"]
+)
+
+class_to_idx = test_dataset.class_to_idx.items()
+class_names = {v: k for k, v in class_to_idx}
 save_dir = "ensemble_results"
 os.makedirs(save_dir, exist_ok=True)
 
@@ -33,7 +45,7 @@ for class_name, path in csv_paths.items():
     df = pd.read_csv(path)
 
     df = df.rename(columns={
-        "logits": f"logit_{class_name}",
+        "logit": f"logit_{class_name}",
         "prob": f"prob_{class_name}"
     })
 
@@ -56,7 +68,11 @@ probs = merged[prob_cols].values
 
 true_labels = merged["true_label"].values
 
+counts = Counter(true_labels)
 
+print("\nTest set class distribution:")
+for i, class_name in enumerate(class_names):
+    print(f"{class_name}: {counts[i]}")
 
 pred_labels = np.argmax(logits, axis=1)
 
@@ -109,7 +125,7 @@ disp.plot(cmap="Blues")
 plt.title("Multiclass Confusion Matrix")
 plt.tight_layout()
 
-plt.savefig(os.path.join(save_dir, "confusion_matrix.png"))
+plt.savefig(os.path.join(save_dir, f"confusion_matrix_{model_name}.png"))
 plt.close()
 
 
@@ -178,14 +194,14 @@ plt.legend(loc="lower right")
 
 plt.tight_layout()
 
-plt.savefig(os.path.join(save_dir, "roc_curves.png"))
+plt.savefig(os.path.join(save_dir, f"roc_curves_{model_name}.png"))
 plt.close()
 
 
 merged["pred_label"] = pred_labels
 
 merged.to_csv(
-    os.path.join(save_dir, "ensemble_predictions.csv"),
+    os.path.join(save_dir, f"{model_name}.csv"),
     index=False
 )
 
